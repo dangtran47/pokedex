@@ -15,7 +15,7 @@ export const useFetchPokeList = () =>
   useInfiniteQuery<IPokeList, Error>({
     queryKey: ['pokes'],
     queryFn: async ({ pageParam = 0 }) => {
-      const response = await pokeClient.get<IResponse<IPokeList>, IsReponse<IPokeList>>(
+      const response = await pokeClient.get<IResponse<IPokeList>, IResponse<IPokeList>>(
         `/pokemon?limit=20&offset=${pageParam * 20}`,
       );
 
