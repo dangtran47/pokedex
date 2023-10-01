@@ -8,6 +8,7 @@ type IResponse<T> = {
 };
 
 type IPokeList = {
+  next: string;
   results: PokeBrief[];
 };
 
