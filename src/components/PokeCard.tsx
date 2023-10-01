@@ -11,7 +11,7 @@ const PokeCard = ({ name, url }: PokeBrief) => {
   if (isError || !poke) return null;
 
   return (
-    <div className="group flex flex-col items-center h-32 w-full block rounded-lg bg-white p-4 pt-10 mt-10 shadow-md hover:bg-slate-50 hover:shadow-lg cursor-pointer">
+    <div className="w-72 group flex flex-col justify-center items-center h-32 w-full block rounded-lg bg-white p-4 pt-10 mt-10 shadow-md hover:bg-slate-50 hover:shadow-lg cursor-pointer">
       {isLoading ? (
         <Spinner />
       ) : (
@@ -25,8 +25,8 @@ const PokeCard = ({ name, url }: PokeBrief) => {
           <div>{capitalize(name)}</div>
 
           <div>
-            {poke.types.map((type) => (
-              <TypeBadge key={`${name}_${type.type.name}`} type={type.type.name} />
+            {poke.types.map((t) => (
+              <TypeBadge key={`${name}_${t.type.name}`} type={t.type.name} />
             ))}
           </div>
         </>

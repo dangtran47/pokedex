@@ -15,8 +15,12 @@ const PokeList = () => {
   }
 
   return (
-    <div className="mx-auto max-w-7xl grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-      {pokes?.results.map((poke) => <PokeCard key={poke.name} {...poke} />)}
+    <div className="mx-auto xl:max-w-7xl lg:max-w-5xl max-w-2xl p-8 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+      {pokes?.results.map((poke) => (
+        <div key={poke.name} className="flex justify-center">
+          <PokeCard {...poke} />
+        </div>
+      ))}
     </div>
   );
 };
