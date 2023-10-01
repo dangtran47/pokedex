@@ -11,7 +11,7 @@ const PokeCard = ({ name, url }: PokeBrief) => {
   if (isError || !poke) return null;
 
   return (
-    <div className="w-72 group flex flex-col justify-center items-center h-32 w-full block rounded-lg bg-white p-4 pt-10 mt-10 shadow-md hover:bg-slate-50 hover:shadow-lg cursor-pointer">
+    <div className="w-72 group flex flex-col justify-center items-center h-32 block rounded-lg bg-white p-4 pt-10 mt-10 shadow-md hover:bg-slate-50 hover:shadow-lg cursor-pointer">
       {isLoading ? (
         <Spinner />
       ) : (

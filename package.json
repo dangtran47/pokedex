@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@tanstack/react-query": "^4.35.7",
     "axios": "^1.5.1",
     "clsx": "^2.0.0",
     "eslint-config-prettier": "^9.0.0",
@@ -22,8 +23,7 @@
     "lodash": "^4.17.21",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-query": "^3.39.3"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",

@@ -1,8 +1,9 @@
-import { useQuery } from 'react-query';
-import { PokeBrief, IPokeTypeName } from '../types';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+
+import { IPokeTypeName, PokeBrief } from '../types';
 import pokeClient from '../axios/pokeClient';
 
-type IReponse<T> = {
+type IResponse<T> = {
   data: T;
 };
 
@@ -11,15 +12,19 @@ type IPokeList = {
 };
 
 export const useFetchPokeList = () =>
-  useQuery<IPokeList, Error>(
-    'pokes',
-    async () => {
-      const response = await pokeClient.get<IReponse<IPokeList>, IReponse<IPokeList>>('/pokemon?limit=100');
+  useInfiniteQuery<IPokeList, Error>({
+    queryKey: ['pokes'],
+    queryFn: async ({ pageParam = 0 }) => {
+      const response = await pokeClient.get<IResponse<IPokeList>, IsReponse<IPokeList>>(
+        `/pokemon?limit=20&offset=${pageParam * 20}`,
+      );
 
       return response.data;
     },
-    {},
-  );
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.next ? pages.length : undefined;
+    },
+  });
 
 type IPokeType = {
   slot: number;
@@ -39,8 +44,12 @@ type IPokeDetail = {
 };
 
 export const useFetchPokeDetail = (url: string) =>
-  useQuery<IPokeDetail, Error>(url, async () => {
-    const response = await pokeClient.get<IReponse<IPokeDetail>, IReponse<IPokeDetail>>(url);
+  useQuery<IPokeDetail, Error>({
+    queryKey: [url],
+    queryFn: async () => {
+      const response = await pokeClient.get<IResponse<IPokeDetail>, IResponse<IPokeDetail>>(url);
 
-    return response.data;
+      return response.data;
+    },
+    keepPreviousData: true,
   });
